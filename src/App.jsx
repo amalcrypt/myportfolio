@@ -191,7 +191,9 @@ const Footer = () => (
     <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-8 text-center sm:text-left">
       <div className="text-slate-900 font-bold text-lg tracking-tight">Amal Binu.</div>
       <div className="text-sm text-slate-500 font-medium">
-        © 2026 Amal Binu. Made with <span className="text-primary mx-1">♥</span> in India.
+    
+        © 2026 Amal Binu. All rights reserved.<br />
+         Built with passion in India.
       </div>
       <div className="flex gap-8 text-sm font-semibold text-slate-600">
         <a href="#home" className="hover:text-primary transition-colors">Home</a>
