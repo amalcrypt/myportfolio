@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './index.css';
 import heroImage from './assets/hero.png';
 
@@ -52,39 +53,142 @@ const Hero = () => (
   </section>
 );
 
-const Projects = () => (
-  <section id="projects" className="py-24 px-6 lg:px-8 bg-white">
-    <div className="max-w-6xl mx-auto">
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between mb-16 px-2">
-        <div className="max-w-xl">
-          <p className="text-sm font-bold uppercase tracking-[0.35em] text-primary mb-4">Projects</p>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-950">
-            <span className="text-primary">Selected</span> works I’ve shipped recently.
-          </h2>
+const Projects = () => {
+  const [showAll, setShowAll] = useState(false);
+  
+  const allProjects = [
+    { 
+      title: 'Educhain', 
+      subtitle: 'A decentralized certificate validation system using blockchain.', 
+      features: ['Smart Contracts', 'Immutable Records', 'Instant Verification'],
+      accent: 'from-indigo-600 to-violet-700',
+      link: 'https://liveeduchain.vercel.app/'
+    },
+    { 
+      title: 'Project Alpha', 
+      subtitle: 'Coming Soon - A revolutionary tool for developers.', 
+      accent: 'from-slate-900 via-slate-700 to-slate-900',
+      isComingSoon: true
+    },
+    { 
+      title: 'Project Beta', 
+      subtitle: 'Coming Soon - Next generation analytics dashboard.', 
+      accent: 'from-cyan-500 to-blue-700',
+      isComingSoon: true
+    },
+    { 
+      title: 'Project Gamma', 
+      subtitle: 'Coming Soon - Creative studio experience.', 
+      accent: 'from-pink-600 to-rose-700',
+      isComingSoon: true
+    },
+  ];
+
+  const ProjectCard = ({ project, i }) => (
+    <div 
+      key={project.title} 
+      className={`group relative rounded-3xl border border-slate-200 bg-white p-4 shadow-xl shadow-slate-900/5 transition-all duration-500 ease-out flex flex-col h-full ${
+        project.isComingSoon 
+          ? 'opacity-75' 
+          : 'hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1.5'
+      }`}
+      style={{ animationDelay: `${i * 150}ms` }}
+    >
+      <div className={`mb-4 h-48 sm:h-52 rounded-2xl bg-gradient-to-br ${project.accent} shadow-inner shadow-black/10 overflow-hidden relative border border-slate-100 shrink-0`}>
+         {!project.isComingSoon && project.link ? (
+           <div className="absolute inset-0 w-full h-full overflow-hidden">
+             <iframe 
+               src={project.link} 
+               className="w-[1200px] h-[800px] origin-top-left scale-[0.25] sm:scale-[0.28] pointer-events-none border-none"
+               title={project.title}
+               loading="lazy"
+             />
+             <div className="absolute inset-0 bg-slate-900/5 group-hover:bg-transparent transition-colors duration-500" />
+             <a 
+               href={project.link} 
+               target="_blank" 
+               rel="noopener noreferrer"
+               className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-3 group-hover:translate-y-0 z-20"
+             >
+                <span className="px-5 py-2 rounded-full bg-slate-950 text-white text-xs font-bold shadow-2xl border border-white/10 backdrop-blur-sm">Visit Live Site</span>
+             </a>
+           </div>
+         ) : (
+           <>
+             <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-[2px]" />
+             {project.isComingSoon && (
+               <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="px-5 py-2 rounded-full bg-slate-900/50 backdrop-blur-md text-white text-xs font-bold border border-white/20">Coming Soon</span>
+               </div>
+             )}
+           </>
+         )}
+      </div>
+      <h3 className={`text-lg font-bold mb-2 transition-colors ${project.isComingSoon ? 'text-slate-400' : 'text-slate-950 group-hover:text-primary'}`}>
+        {project.title}
+      </h3>
+      <p className="text-slate-600 leading-relaxed text-xs mb-4">{project.subtitle}</p>
+      
+      {!project.isComingSoon && project.features && (
+        <div className="flex flex-wrap gap-2 mt-auto">
+          {project.features.map((feature) => (
+            <span 
+              key={feature} 
+              className="px-2.5 py-1 rounded-lg bg-slate-50 text-slate-500 text-[10px] font-bold border border-slate-100 uppercase tracking-wider group-hover:border-primary/20 group-hover:text-primary/70 transition-colors"
+            >
+              {feature}
+            </span>
+          ))}
         </div>
-        <a href="#" className="inline-flex items-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50 shadow-sm">
-          View All Projects
-        </a>
-      </div>
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
-        {[
-          { title: 'Portfolio UI', subtitle: 'A modern portfolio hero concept for designers.', accent: 'from-violet-600 to-indigo-700' },
-          { title: 'Agency Landing', subtitle: 'Clean landing page with subtle motion and hierarchy.', accent: 'from-slate-900 via-slate-700 to-slate-900' },
-          { title: 'Product Dashboard', subtitle: 'Analytics dashboard interface with data cards.', accent: 'from-cyan-500 to-blue-700' },
-          { title: 'Creative Studio', subtitle: 'Digital experience for a high-end design agency.', accent: 'from-pink-600 to-rose-700' },
-        ].map(project => (
-          <div key={project.title} className="group rounded-[2.5rem] border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/5 hover:border-primary/30 transition-all duration-300">
-            <div className={`mb-6 h-64 sm:h-80 rounded-[2rem] bg-gradient-to-br ${project.accent} shadow-inner shadow-black/10 overflow-hidden`}>
-               <div className="w-full h-full bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-            <h3 className="text-xl font-bold text-slate-950 mb-3">{project.title}</h3>
-            <p className="text-slate-600 leading-relaxed text-sm">{project.subtitle}</p>
-          </div>
-        ))}
-      </div>
+      )}
     </div>
-  </section>
-);
+  );
+
+  return (
+    <section id="projects" className="py-24 px-6 lg:px-8 bg-white overflow-hidden">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between mb-16 px-2">
+          <div className="max-w-xl animate-in fade-in slide-in-from-left duration-1000">
+            <p className="text-sm font-bold uppercase tracking-[0.35em] text-primary mb-4">Project</p>
+            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-950">
+              <span className="text-primary">Featured</span> work I’ve built recently.
+            </h2>
+          </div>
+          <button 
+            onClick={() => setShowAll(!showAll)}
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-slate-950 px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-slate-800 active:scale-95 shadow-lg shadow-slate-950/20"
+          >
+            <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-1">
+              {showAll ? 'View Less' : 'View All Projects'}
+            </span>
+            <svg 
+              className={`w-4 h-4 transition-transform duration-300 ${showAll ? 'rotate-180' : 'group-hover:translate-x-1'}`} 
+              fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
+        </div>
+        
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {allProjects.slice(0, 3).map((project, i) => (
+            <ProjectCard key={project.title} project={project} i={i} />
+          ))}
+        </div>
+
+        <div 
+          className={`grid gap-6 sm:grid-cols-2 lg:grid-cols-3 overflow-hidden transition-all duration-1000 ease-in-out ${
+            showAll ? 'max-h-[3000px] opacity-100 mt-6' : 'max-h-0 opacity-0'
+          }`}
+        >
+          {allProjects.slice(3).map((project, i) => (
+            <ProjectCard key={project.title} project={project} i={i + 3} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const About = () => (
   <section id="about" className="py-24 px-6 lg:px-8 bg-slate-50 border-y border-slate-200/50">
