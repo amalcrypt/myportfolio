@@ -62,10 +62,11 @@ const allProjects = [
     link: 'https://liveeduchain.vercel.app/'
   },
   { 
-    title: 'Project Alpha', 
-    subtitle: 'Coming Soon - A revolutionary tool for developers.', 
-    accent: 'from-slate-900 via-slate-700 to-slate-900',
-    isComingSoon: true
+    title: 'Movie Sentiment Analysis', 
+    subtitle: 'An AI-powered tool to analyze movie reviews and sentiments.', 
+    features: ['NLP', 'Sentiment Analysis', 'Machine Learning'],
+    accent: 'from-blue-600 to-cyan-500',
+    link: 'https://moviesentimentanalaysis.vercel.app/'
   },
   { 
     title: 'Project Beta', 
