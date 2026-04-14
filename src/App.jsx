@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './index.css';
 import heroImage from './assets/hero.png';
+import resumeFile from './assets/Amal_MCA.pdf';
 
 const Navbar = () => (
   <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/80 border-b border-slate-200/80 shadow-slate-100 shadow-sm">
@@ -270,13 +271,12 @@ const Contact = () => (
         </div>
         <div className="flex flex-col gap-6">
           <a
-  href="https://mail.google.com/mail/?view=cm&fs=1&to=amala2627@gmail.com"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-flex items-center justify-center rounded-full bg-white px-10 py-5 text-lg font-bold text-slate-950 shadow-xl transition hover:bg-slate-100 hover:scale-105 active:scale-95 duration-200"
->
-  Email Me
-</a>
+            href={resumeFile}
+            download="Amal_Resume.pdf"
+            className="inline-flex items-center justify-center rounded-full bg-white px-10 py-5 text-lg font-bold text-slate-950 shadow-xl transition hover:bg-slate-100 hover:scale-105 active:scale-95 duration-200"
+          >
+            Download Resume
+          </a>
           <div className="text-center lg:text-left px-4">
             <p className="text-slate-400 text-sm font-medium mb-4">Email: amala2627@gmail.com</p>
             <div className="flex justify-center lg:justify-start gap-8 text-slate-400 text-sm font-medium">
