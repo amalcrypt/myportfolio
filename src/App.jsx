@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './index.css';
 import heroImage from './assets/hero.png';
-import resumeFile from './assets/Amal_MCA.pdf';
+import resumeFile from './assets/Amal_Binu_FullStack_Developer_Resume.pdf';
 
 const Navbar = () => (
   <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/80 border-b border-slate-200/80 shadow-slate-100 shadow-sm">
@@ -272,7 +272,7 @@ const Contact = () => (
         <div className="flex flex-col gap-6">
           <a
             href={resumeFile}
-            download="Amal_Resume.pdf"
+            download="Amal_Binu_FullStack_Developer_Resume/pdf"
             className="inline-flex items-center justify-center rounded-full bg-white px-10 py-5 text-lg font-bold text-slate-950 shadow-xl transition hover:bg-slate-100 hover:scale-105 active:scale-95 duration-200"
           >
             Download Resume
