@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './index.css';
 import heroImage from './assets/hero.png';
+import petrochatImage from './assets/petrochat.png';
 import resumeFile from './assets/Amal_Binu_FullStack_Developer_Resume.pdf';
 
 const Navbar = () => (
@@ -22,7 +23,7 @@ const Navbar = () => (
 
 const Hero = () => (
   <section id="home" className="relative overflow-hidden pt-32 pb-24 lg:pt-48 lg:pb-32 px-6 lg:px-8">
-    <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_top_left,rgba(139,92,246,0.1),transparent_28%),radial-gradient(circle_at_top_right,rgba(99,102,241,0.08),transparent_24%)]" />
+    <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_top_left,rgba(139,92,246,0.15),transparent_28%),radial-gradient(circle_at_top_right,rgba(99,102,241,0.08),transparent_24%)]" />
     <div className="relative max-w-6xl mx-auto grid gap-16 lg:grid-cols-[1.2fr_0.8fr] items-center text-center lg:text-left">
       <div className="max-w-2xl mx-auto lg:mx-0">
         <p className="text-slate-500 text-lg md:text-xl mb-4 font-medium italic">Hey, I'm Amal 👋</p>
@@ -70,10 +71,13 @@ const allProjects = [
     link: 'https://moviesentimentanalaysis.vercel.app/'
   },
   { 
-    title: 'Project Beta', 
-    subtitle: 'Coming Soon - Next generation analytics dashboard.', 
-    accent: 'from-cyan-500 to-blue-700',
-    isComingSoon: true
+    title: 'PetroChat', 
+    subtitle: 'An AI-powered conversational assistant designed for the petroleum industry.', 
+    features: ['AI Assistant', 'Domain Knowledge', 'Data Visualization'],
+    accent: 'from-orange-500 to-amber-700',
+    link: 'https://petrochat.streamlit.app/',
+    image: petrochatImage,
+    useIframe: false
   },
   { 
     title: 'Project Gamma', 
@@ -95,14 +99,29 @@ const ProjectCard = ({ project, i }) => (
   >
     <div className={`mb-4 h-48 sm:h-52 rounded-2xl bg-gradient-to-br ${project.accent} shadow-inner shadow-black/10 overflow-hidden relative border border-slate-100 shrink-0`}>
        {!project.isComingSoon && project.link ? (
-         <div className="absolute inset-0 w-full h-full overflow-hidden bg-white">
-           <iframe 
-             src={project.link} 
-             className="w-[1200px] h-[800px] origin-top-left scale-[0.25] sm:scale-[0.28] pointer-events-none border-none opacity-0 transition-opacity duration-500"
-             onLoad={(e) => e.target.classList.remove('opacity-0')}
-             title={project.title}
-             loading="lazy"
-           />
+         <div className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center">
+           {project.image ? (
+             <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+           ) : project.useIframe !== false ? (
+             <div className="absolute inset-0 w-full h-full bg-white">
+               <iframe 
+                 src={project.link} 
+                 className="w-[1200px] h-[800px] origin-top-left scale-[0.25] sm:scale-[0.28] pointer-events-none border-none opacity-0 transition-opacity duration-500"
+                 onLoad={(e) => e.target.classList.remove('opacity-0')}
+                 title={project.title}
+                 loading="lazy"
+               />
+             </div>
+           ) : (
+             <div className="flex flex-col items-center gap-3 animate-in fade-in zoom-in duration-700">
+                <div className="p-4 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 shadow-xl">
+                  <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <span className="text-white/90 text-[10px] font-bold tracking-[0.2em] uppercase">Live Preview</span>
+             </div>
+           )}
            <a 
              href={project.link} 
              target="_blank" 
