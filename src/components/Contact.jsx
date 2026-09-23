@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import Reveal from './Reveal';
+import RevealHeading from './RevealHeading';
 import SectionHeader from './SectionHeader';
 import { ArrowDown, ArrowUpRight, Check, Copy } from './icons';
 import { contact } from '../data';
 import resumeFile from '../assets/Amal_Binu_FullStack_Developer_Resume.pdf';
 
 const linkClass =
-  'group inline-flex h-11 items-center gap-2 rounded-full border border-line px-5 text-sm font-medium text-ink transition-colors hover:border-ink/40';
+  'group inline-flex h-11 items-center gap-2 rounded-full border border-line px-5 text-sm font-medium text-ink transition-[border-color,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-ink/40 active:translate-y-0 active:scale-[0.98]';
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
@@ -26,17 +27,18 @@ export default function Contact() {
       <div className="mx-auto max-w-6xl">
         <SectionHeader index="05" label="Contact" note="Let’s talk" />
 
-        <Reveal as="h2" className="mt-10 text-5xl leading-[1] sm:text-7xl lg:text-8xl lg:tracking-[-0.045em]">
-          Have an agent <em className="font-serif font-normal italic">in mind?</em>
-        </Reveal>
-        <Reveal as="p" delay={80} className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
+        <RevealHeading
+          parts={['Have an agent ', { text: 'in mind?', em: true }]}
+          className="mt-10 text-5xl leading-[1] sm:text-7xl lg:text-8xl lg:tracking-[-0.045em]"
+        />
+        <Reveal as="p" delay={200} className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
           If you have an AI project, an automation idea, or just want to say hello, I’m always open to new opportunities and interesting conversations.
         </Reveal>
 
-        <Reveal delay={140} className="mt-12 flex flex-wrap items-center gap-x-4 gap-y-3">
+        <Reveal delay={280} className="mt-12 flex flex-wrap items-center gap-x-4 gap-y-3">
           <a
             href={`mailto:${contact.email}`}
-            className="text-2xl font-medium tracking-tight text-ink underline decoration-line decoration-2 underline-offset-[10px] transition-colors hover:decoration-accent sm:text-4xl"
+            className="link-u text-2xl font-medium tracking-tight text-ink [--u:2px] hover:text-accent sm:text-4xl"
           >
             {contact.email}
           </a>
@@ -52,7 +54,7 @@ export default function Contact() {
           <span aria-live="polite" className="sr-only">{copied ? 'Email address copied' : ''}</span>
         </Reveal>
 
-        <Reveal delay={200} className="mt-10 flex flex-wrap gap-3">
+        <Reveal delay={360} className="mt-10 flex flex-wrap gap-3">
           <a href={resumeFile} download="Amal_Binu_Resume.pdf" className={linkClass}>
             Resume
             <ArrowDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-y-0.5" />

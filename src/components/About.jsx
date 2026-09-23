@@ -1,4 +1,5 @@
 import Reveal from './Reveal';
+import RevealHeading from './RevealHeading';
 import SectionHeader from './SectionHeader';
 import { ArrowDown } from './icons';
 import { facts } from '../data';
@@ -12,10 +13,11 @@ export default function About() {
 
         <div className="mt-10 grid gap-16 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
-            <Reveal as="h2" className="max-w-2xl text-4xl sm:text-5xl lg:text-6xl lg:tracking-[-0.035em]">
-              I build agents that <em className="font-serif font-normal italic">reason, plan &amp; act</em>.
-            </Reveal>
-            <Reveal delay={80} className="mt-8 max-w-xl space-y-5 text-lg leading-relaxed text-muted">
+            <RevealHeading
+              parts={['I build agents that ', { text: 'reason, plan & act', em: true }, '.']}
+              className="max-w-2xl text-4xl sm:text-5xl lg:text-6xl lg:tracking-[-0.035em]"
+            />
+            <Reveal delay={200} className="mt-8 max-w-xl space-y-5 text-lg leading-relaxed text-muted">
               <p>
                 I’m a passionate Agentic AI engineer dedicated to building autonomous systems that can reason, plan, and take action on their own.
               </p>
@@ -25,19 +27,19 @@ export default function About() {
             </Reveal>
           </div>
 
-          <Reveal delay={140} className="lg:pt-2">
-            <dl className="divide-y divide-line border-y border-line">
-              {facts.map((fact) => (
-                <div key={fact.label} className="grid grid-cols-[7rem_1fr] gap-4 py-4 text-[15px]">
+          <Reveal delay={150} className="lg:pt-2">
+            <dl className="stagger divide-y divide-line border-y border-line">
+              {facts.map((fact, i) => (
+                <div key={fact.label} style={{ '--i': i }} className="grid grid-cols-[7rem_1fr] gap-4 py-4 text-[15px]">
                   <dt className="font-mono text-xs uppercase leading-6 tracking-[0.12em] text-muted">{fact.label}</dt>
                   <dd className="text-ink">{fact.value}</dd>
                 </div>
               ))}
-              <div className="grid grid-cols-[7rem_1fr] gap-4 py-4 text-[15px]">
+              <div style={{ '--i': facts.length }} className="grid grid-cols-[7rem_1fr] gap-4 py-4 text-[15px]">
                 <dt className="font-mono text-xs uppercase leading-6 tracking-[0.12em] text-muted">Resume</dt>
                 <dd>
                   <a href={resumeFile} download="Amal_Binu_Resume.pdf" className="group inline-flex items-center gap-1.5 font-medium text-ink">
-                    <span className="underline decoration-line underline-offset-[6px] transition-colors group-hover:decoration-ink">Download PDF</span>
+                    <span className="link-u">Download PDF</span>
                     <ArrowDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-y-0.5" />
                   </a>
                 </dd>

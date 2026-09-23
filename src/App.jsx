@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import Lenis from 'lenis';
+import { prefersReducedMotion } from './hooks';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
@@ -8,6 +11,13 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
+  // Inertia smooth scrolling for wheel/trackpad (touch keeps native scrolling), including # links
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+    const lenis = new Lenis({ autoRaf: true, anchors: true, duration: 1.15 });
+    return () => lenis.destroy();
+  }, []);
+
   return (
     <div className="min-h-screen font-sans text-ink antialiased">
       <a

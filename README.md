@@ -15,7 +15,13 @@ Also on every page:
 
 - **Dark mode** — sun/moon toggle in the navbar. The new theme is revealed in a circle growing from the button (View Transitions API, instant fallback elsewhere). The choice is saved, follows the OS setting until then, and an inline script in `index.html` applies it before first paint so there is no flash.
 
-Motion is kept deliberately small (staged hero entrance, scroll reveals, the console), CSS-only, paused off screen, and disabled for visitors who prefer reduced motion.
+Motion is calm and consistent (one shared easing curve):
+
+- **Smooth scrolling** via [Lenis](https://github.com/darkroomengineering/lenis) for wheel/trackpad, including `#` links; touch keeps native scrolling.
+- **Headings** rise in word by word (`RevealHeading`), section rules draw in from the left, project screenshots open like a curtain, and lists arrive one item at a time.
+- **Links** draw their underline on hover; the navbar tucks away on scroll down and returns on scroll up.
+
+Everything is CSS transitions driven by an IntersectionObserver, the console pauses off screen, and all motion is switched off for visitors who prefer reduced motion.
 
 ## Design
 
@@ -31,6 +37,7 @@ src/
 │   ├── AgentConsole.jsx   # Hero agent-run animation
 │   ├── ThemeToggle.jsx    # Animated sun/moon toggle
 │   ├── SectionHeader.jsx  # Numbered rule at the top of each section
+│   ├── RevealHeading.jsx  # Word-by-word heading reveal
 │   ├── Reveal.jsx         # Scroll-triggered entrance wrapper
 │   └── icons.jsx          # Inline SVG icons
 ├── data.js                # All site content: projects, process, skills, facts, agent run

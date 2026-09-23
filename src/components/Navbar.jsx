@@ -14,11 +14,20 @@ const Logo = () => (
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(() => window.scrollY > 8);
+  const [hidden, setHidden] = useState(false);
   const [active, setActive] = useState('home');
   const [open, setOpen] = useState(false);
 
+  // Tuck the bar away while scrolling down, bring it back as soon as the visitor scrolls up
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      if (Math.abs(y - lastY) < 6) return;
+      setHidden(y > lastY && y > 160);
+      lastY = y;
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -51,9 +60,9 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-[transform,background-color,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         scrolled || open ? 'border-line bg-paper/85 backdrop-blur-md' : 'border-transparent'
-      }`}
+      } ${hidden && !open ? '-translate-y-full' : 'translate-y-0'}`}
     >
       <nav aria-label="Main" className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-6 lg:px-8">
         <Logo />
@@ -64,7 +73,7 @@ export default function Navbar() {
               <a
                 href={`#${link.id}`}
                 aria-current={active === link.id ? 'location' : undefined}
-                className={`transition-colors ${active === link.id ? 'text-ink' : 'text-muted hover:text-ink'}`}
+                className={`nav-u ${active === link.id ? 'text-ink' : 'text-muted hover:text-ink'}`}
               >
                 {link.label}
               </a>
@@ -88,7 +97,7 @@ export default function Navbar() {
             aria-label={open ? 'Close menu' : 'Open menu'}
             className="grid h-9 w-9 place-items-center rounded-full text-ink md:hidden"
           >
-            {open ? <Close /> : <Menu />}
+            <span className={`block transition-transform duration-300 ${open ? 'rotate-90' : 'rotate-0'}`}>{open ? <Close /> : <Menu />}</span>
           </button>
         </div>
       </nav>
@@ -100,8 +109,12 @@ export default function Navbar() {
       >
         <div className="min-h-0 overflow-hidden">
           <ul className="mx-auto max-w-6xl px-6 pb-6 pt-2">
-            {[...navLinks, { id: 'contact', label: 'Contact' }].map((link) => (
-              <li key={link.id} className="border-b border-line last:border-0">
+            {[...navLinks, { id: 'contact', label: 'Contact' }].map((link, i) => (
+              <li
+                key={link.id}
+                style={{ animationDelay: `${i * 50}ms` }}
+                className={`border-b border-line last:border-0 ${open ? 'animate-fade-up' : ''}`}
+              >
                 <a
                   href={`#${link.id}`}
                   onClick={() => setOpen(false)}
