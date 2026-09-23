@@ -99,7 +99,6 @@ export const skills = [
 ];
 
 export const facts = [
-  { label: 'Based in', value: 'India' },
   { label: 'Focus', value: 'Autonomous agents, multi-agent systems, RAG' },
   { label: 'Stack', value: stack.join(', ') },
   { label: 'Currently', value: 'Open to roles & freelance projects' },

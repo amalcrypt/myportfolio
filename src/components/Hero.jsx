@@ -18,7 +18,7 @@ export default function Hero() {
       <div className="mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
         <div>
           <p className="animate-fade-up font-mono text-xs uppercase tracking-[0.16em] text-muted">
-            <ScrambleText text="Agentic AI Engineer — India" />
+            <ScrambleText text="Agentic AI Engineer" />
           </p>
 
           <RevealHeading
@@ -54,7 +54,7 @@ export default function Hero() {
             </span>
             <span aria-hidden="true">·</span>
             <span>
-              India, <LocalTime />
+              Local time <LocalTime />
             </span>
           </p>
         </div>
