@@ -25,7 +25,3 @@ h1, h2, h3, h4, h5, h6 {
 html {
   scroll-behavior: smooth;
 }
-
-::selection {
-  @apply bg-primary/30 text-white;
-}

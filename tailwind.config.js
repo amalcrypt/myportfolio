@@ -8,8 +8,6 @@ export default {
     extend: {
       colors: {
         primary: '#8b5cf6', // violet-500
-        secondary: '#9333ea', // purple-600
-        dark: '#ffffff', // white
       }
     },
   },

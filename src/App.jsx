@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './index.css';
 import heroImage from './assets/hero.png';
 import petrochatImage from './assets/petrochat.png';
+import educhainImage from './assets/educhain.png';
 import resumeFile from './assets/Amal_Binu_FullStack_Developer_Resume.pdf';
 
 const Navbar = () => (
@@ -28,10 +29,10 @@ const Hero = () => (
       <div className="max-w-2xl mx-auto lg:mx-0">
         <p className="text-slate-500 text-lg md:text-xl mb-4 font-medium italic">Hey, I'm Amal 👋</p>
         <h1 className="text-5xl sm:text-6xl lg:text-8xl font-bold tracking-tight leading-[0.95] text-slate-950">
-          <span className="text-primary">Full</span>stack<br />Developer
+          <span className="text-primary">Agentic</span> AI<br />Engineer
         </h1>
         <p className="mt-8 max-w-xl text-slate-600 text-lg leading-relaxed mx-auto lg:mx-0">
-          I'm a Full-stack developer focused on crafting high-performance web applications, with a growing expertise in machine learning and AI-driven solutions.
+          I'm an Agentic AI Engineer focused on building autonomous, LLM-powered agents that reason, use tools, and orchestrate complex multi-step workflows.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
           <a href="#contact" className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-slate-950 px-8 py-4 text-sm font-semibold text-white shadow-xl shadow-slate-950/20 transition hover:bg-slate-800">
@@ -56,46 +57,45 @@ const Hero = () => (
 );
 
 const allProjects = [
-  { 
-    title: 'Educhain', 
-    subtitle: 'A decentralized certificate validation system using blockchain.', 
-    features: ['Smart Contracts', 'Immutable Records', 'Instant Verification'],
-    accent: 'from-indigo-600 to-violet-700',
-    link: 'https://liveeduchain.vercel.app/'
-  },
-  { 
-    title: 'Movie Sentiment Analysis', 
-    subtitle: 'An AI-powered tool to analyze movie reviews and sentiments.', 
-    features: ['NLP', 'Sentiment Analysis', 'Machine Learning'],
-    accent: 'from-blue-600 to-cyan-500',
-    link: 'https://moviesentimentanalaysis.vercel.app/'
-  },
-  { 
-    title: 'PetroChat', 
-    subtitle: 'An AI-powered conversational assistant designed for the petroleum industry.', 
+  {
+    title: 'PetroChat',
+    subtitle: 'An AI-powered conversational assistant designed for the petroleum industry.',
     features: ['AI Assistant', 'Domain Knowledge', 'Data Visualization'],
     accent: 'from-orange-500 to-amber-700',
     link: 'https://petrochat.streamlit.app/',
     image: petrochatImage,
     useIframe: false
   },
-  { 
-    title: 'Project Gamma', 
-    subtitle: 'Coming Soon - Creative studio experience.', 
+  {
+    title: 'Movie Sentiment Analysis',
+    subtitle: 'An AI-powered tool to analyze movie reviews and sentiments.',
+    features: ['NLP', 'Sentiment Analysis', 'Machine Learning'],
+    accent: 'from-blue-600 to-cyan-500',
+    link: 'https://moviesentimentanalaysis.vercel.app/'
+  },
+  {
+    title: 'Educhain',
+    subtitle: 'A decentralized certificate validation system using blockchain.',
+    features: ['Smart Contracts', 'Immutable Records', 'Instant Verification'],
+    accent: 'from-indigo-600 to-violet-700',
+    link: 'https://liveeduchain.vercel.app/',
+    image: educhainImage
+  },
+  {
+    title: 'Project Gamma',
+    subtitle: 'Coming Soon - My next agentic AI build.',
     accent: 'from-emerald-500 to-teal-700',
     isComingSoon: true
   },
 ];
 
-const ProjectCard = ({ project, i }) => (
-  <div 
-    key={project.title} 
+const ProjectCard = ({ project }) => (
+  <div
     className={`group relative rounded-3xl border border-slate-200 bg-white p-4 shadow-xl shadow-slate-900/5 transition-all duration-500 ease-out flex flex-col h-full ${
-      !project.isComingSoon 
+      !project.isComingSoon
         ? 'hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1.5'
         : ''
     }`}
-    style={{ animationDelay: `${i * 150}ms` }}
   >
     <div className={`mb-4 h-48 sm:h-52 rounded-2xl bg-gradient-to-br ${project.accent} shadow-inner shadow-black/10 overflow-hidden relative border border-slate-100 shrink-0`}>
        {!project.isComingSoon && project.link ? (
@@ -113,7 +113,7 @@ const ProjectCard = ({ project, i }) => (
                />
              </div>
            ) : (
-             <div className="flex flex-col items-center gap-3 animate-in fade-in zoom-in duration-700">
+             <div className="flex flex-col items-center gap-3">
                 <div className="p-4 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 shadow-xl">
                   <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -168,8 +168,8 @@ const Projects = () => {
     <section id="projects" className="py-24 px-6 lg:px-8 bg-white overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between mb-16 px-2">
-          <div className="max-w-xl animate-in fade-in slide-in-from-left duration-1000">
-            <p className="text-sm font-bold uppercase tracking-[0.35em] text-primary mb-4">Project</p>
+          <div className="max-w-xl">
+            <p className="text-sm font-bold uppercase tracking-[0.35em] text-primary mb-4">Projects</p>
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-950">
               <span className="text-primary">Featured</span> work I’ve built recently.
             </h2>
@@ -191,8 +191,8 @@ const Projects = () => {
         </div>
         
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {allProjects.slice(0, 3).map((project, i) => (
-            <ProjectCard key={project.title} project={project} i={i} />
+          {allProjects.slice(0, 3).map((project) => (
+            <ProjectCard key={project.title} project={project} />
           ))}
         </div>
 
@@ -201,8 +201,8 @@ const Projects = () => {
             showAll ? 'max-h-[3000px] opacity-100 mt-6' : 'max-h-0 opacity-0'
           }`}
         >
-          {allProjects.slice(3).map((project, i) => (
-            <ProjectCard key={project.title} project={project} i={i + 3} />
+          {allProjects.slice(3).map((project) => (
+            <ProjectCard key={project.title} project={project} />
           ))}
         </div>
       </div>
@@ -217,11 +217,11 @@ const About = () => (
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.35em] text-primary mb-4">About Me</p>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-950 mb-8 leading-tight">
-            <span className="text-primary">I design</span> & build products that people love.
+            <span className="text-primary">I build</span> AI agents that reason, plan & act.
           </h2>
           <p className="text-slate-600 text-lg leading-relaxed max-w-xl mb-6 mx-0 text-justify">
-            I’m a passionate full-stack developer dedicated to building modern web applications that balance performance, scalability, and great user experience.
-            With a strong foundation in both frontend and backend technologies, I focus on crafting clean, efficient solutions that solve real problems. I believe great software is not just about code, it’s about creating meaningful digital experiences.
+            I’m a passionate Agentic AI engineer dedicated to building autonomous systems that can reason, plan, and take action on their own.
+            I design LLM-powered agents that use tools, work through multi-step tasks, and collaborate with other agents to solve real problems. I believe great AI is not just about models, it’s about building reliable agents that deliver meaningful results.
           </p>
         </div>
         <div className="text-left">
@@ -229,7 +229,7 @@ const About = () => (
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:bg-primary/30 transition-colors" />
             <h3 className="text-2xl font-bold mb-6 relative z-10 text-white">My Stack.</h3>
             <div className="flex flex-wrap gap-3 relative z-10">
-              {['React', 'Node.js', 'Express', 'MongoDB', 'JavaScript', 'Tailwind', 'Python', 'Flask'].map(item => (
+              {['LangChain', 'LangGraph', 'OpenAI'].map(item => (
                 <div key={item} className="rounded-full border border-slate-800 bg-slate-900/50 px-4 py-2 text-xs font-semibold text-white">
                   {item}
                 </div>
@@ -244,9 +244,9 @@ const About = () => (
 
 const Skills = () => {
   const categories = [
-    { title: 'Frontend', items: ['Python', 'ReactJS', 'NextJS', 'Tailwind CSS'] },
-    { title: 'Backend', items: ['NodeJS', 'MongoDB', 'ExpressJS', 'Flask'] },
-    { title: 'Soft Skills', items: ['Communication', 'Collaboration', 'Problem Solving', 'Leadership'] },
+    { title: 'LangChain', items: ['Chains & Prompt Templates', 'Tool Integration', 'Retrieval-Augmented Generation', 'Agent Memory'] },
+    { title: 'LangGraph', items: ['Stateful Agent Workflows', 'Multi-Agent Orchestration', 'Checkpointing', 'Human-in-the-Loop'] },
+    { title: 'OpenAI', items: ['GPT Models', 'Function Calling', 'Structured Outputs', 'Embeddings'] },
   ];
 
   return (
@@ -254,7 +254,7 @@ const Skills = () => {
       <div className="max-w-6xl mx-auto">
         <p className="text-sm font-bold uppercase tracking-[0.35em] text-primary mb-4 text-center">Expertise</p>
         <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-950 mb-16 text-center">
-          My <span className="text-primary">technical</span> toolbox.
+          My <span className="text-primary">agentic</span> toolbox.
         </h2>
         <div className="grid gap-8 md:grid-cols-3">
           {categories.map(category => (
@@ -283,15 +283,15 @@ const Contact = () => (
       <div className="grid gap-12 lg:grid-cols-[1.3fr_0.7fr] items-center relative z-10">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.35em] text-primary mb-6">Contact</p>
-          <h2 className="text-4xl sm:text-6xl font-bold text-white leading-tight mb-8">Let’s build something great together.</h2>
+          <h2 className="text-4xl sm:text-6xl font-bold text-white leading-tight mb-8">Let’s build intelligent agents together.</h2>
           <p className="text-slate-400 text-lg leading-relaxed max-w-xl">
-            If you have a project, idea, or just want to say hello, I’m always open to new opportunities and interesting conversations.
+            If you have an AI project, an automation idea, or just want to say hello, I’m always open to new opportunities and interesting conversations.
           </p>
         </div>
         <div className="flex flex-col gap-6">
           <a
             href={resumeFile}
-            download="Amal_Binu_FullStack_Developer_Resume/pdf"
+            download="Amal_Binu_Resume.pdf"
             className="inline-flex items-center justify-center rounded-full bg-white px-10 py-5 text-lg font-bold text-slate-950 shadow-xl transition hover:bg-slate-100 hover:scale-105 active:scale-95 duration-200"
           >
             Download Resume
