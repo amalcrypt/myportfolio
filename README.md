@@ -4,29 +4,41 @@ A single-page, responsive portfolio built with React, Vite, and Tailwind CSS.
 
 ## Sections
 
-- **Home** — animated agent console that plays a scripted agent run (graph + trace), typed tagline
-- **Projects** — screenshot cards linking to live sites, with a "View All" toggle
-- **About** — bio and an animated `agent.config.js` profile card
-- **Workflow** — the understand → plan → act → reflect agent loop
+- **Home** — headline, intro, and a terminal-style console that plays a scripted agent run (graph + trace)
+- **Work** — project screenshots linking to the live sites
+- **Process** — the understand → plan → act → reflect agent loop
+- **About** — bio and a short facts list with the resume download
 - **Skills** — LangChain, LangGraph, and OpenAI
-- **Contact** — resume download, email (with copy), LinkedIn, and GitHub
+- **Contact** — email (with copy), resume, LinkedIn, and GitHub
 
-Animations are CSS-only (no animation library), pause when off screen, and respect the visitor's reduced-motion setting.
+Also on every page:
+
+- **Dark mode** — sun/moon toggle in the navbar. The new theme is revealed in a circle growing from the button (View Transitions API, instant fallback elsewhere). The choice is saved, follows the OS setting until then, and an inline script in `index.html` applies it before first paint so there is no flash.
+
+Motion is kept deliberately small (staged hero entrance, scroll reveals, the console), CSS-only, paused off screen, and disabled for visitors who prefer reduced motion.
+
+## Design
+
+- **Type** — Geist for text, Instrument Serif italic for emphasis, Geist Mono for labels (Google Fonts).
+- **Color** — design tokens in `src/index.css` (`--paper`, `--surface`, `--ink`, `--muted`, `--line`, `--accent`), exposed to Tailwind as `bg-paper`, `text-ink`, `border-line`, and so on. Dark mode only swaps the variables. Change `--accent` to rebrand.
 
 ## Project Structure
 
 ```
 src/
-├── assets/               # Project screenshots (WebP) and resume PDF
-├── components/           # One file per page section, plus shared pieces
-│   ├── AgentConsole.jsx  # Hero agent-run animation
-│   ├── Reveal.jsx        # Scroll-triggered entrance wrapper
-│   └── icons.jsx         # Inline SVG icons
-├── data.js               # All site content: projects, skills, workflow, agent run
-├── hooks.js              # useInView, reduced-motion check, card spotlight
-├── App.jsx               # Page layout
-├── index.css             # Global styles, reveal/spotlight effects
-└── main.jsx              # Entry point
+├── assets/                # Project screenshots (WebP) and resume PDF
+├── components/            # One file per page section, plus shared pieces
+│   ├── AgentConsole.jsx   # Hero agent-run animation
+│   ├── ThemeToggle.jsx    # Animated sun/moon toggle
+│   ├── SectionHeader.jsx  # Numbered rule at the top of each section
+│   ├── Reveal.jsx         # Scroll-triggered entrance wrapper
+│   └── icons.jsx          # Inline SVG icons
+├── data.js                # All site content: projects, process, skills, facts, agent run
+├── theme.js               # Theme state, persistence, and circle-reveal transition
+├── hooks.js               # useInView and the reduced-motion check
+├── App.jsx                # Page layout
+├── index.css              # Design tokens and global styles
+└── main.jsx               # Entry point
 ```
 
 ## Getting Started
@@ -41,10 +53,9 @@ npm run lint     # Run ESLint
 
 ## Customization
 
-- **Content** — everything lives in `src/data.js`: `projects`, `skills`, `stack`, `capabilities`, `workflowSteps`, `contact`, and the scripted hero `agentRun`.
-- **Projects** — each entry takes a `title`, `subtitle`, `features`, `accent` gradient, `link`, and an `image` (a 900×600 screenshot works best). Set `isComingSoon: true` for a placeholder card.
-- **Resume** — replace the PDF in `src/assets/` and update its import in `src/components/Contact.jsx`.
-- **Theme color** — change `primary` in `tailwind.config.js`.
+- **Content** — everything lives in `src/data.js`: `projects`, `processSteps`, `skills`, `facts`, `stack`, `contact`, and the scripted hero `agentRun`.
+- **Projects** — each entry takes a `title`, `subtitle`, `features`, `link`, and an `image` (a 900×600 screenshot works best).
+- **Resume** — replace the PDF in `src/assets/` and update its imports in `About.jsx` and `Contact.jsx`.
 
 ## Tech Stack
 

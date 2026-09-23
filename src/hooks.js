@@ -24,11 +24,3 @@ export function useInView({ once = false, threshold = 0.15, rootMargin = '0px' }
 
   return [ref, inView];
 }
-
-// Moves a card's .spotlight glow to the cursor without re-rendering.
-export function trackSpotlight(event) {
-  const card = event.currentTarget;
-  const rect = card.getBoundingClientRect();
-  card.style.setProperty('--spot-x', `${event.clientX - rect.left}px`);
-  card.style.setProperty('--spot-y', `${event.clientY - rect.top}px`);
-}

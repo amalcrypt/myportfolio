@@ -1,7 +1,11 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 
+// Colors come from CSS variables in index.css, so dark mode only swaps the variables.
+const token = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -9,55 +13,50 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#8b5cf6', // violet-500
+        paper: token('paper'),
+        surface: token('surface'),
+        ink: token('ink'),
+        muted: token('muted'),
+        line: token('line'),
+        accent: token('accent'),
       },
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
-        mono: ['"JetBrains Mono"', ...defaultTheme.fontFamily.mono],
+        sans: ['Geist', ...defaultTheme.fontFamily.sans],
+        serif: ['"Instrument Serif"', ...defaultTheme.fontFamily.serif],
+        mono: ['"Geist Mono"', ...defaultTheme.fontFamily.mono],
       },
       keyframes: {
         'fade-up': {
-          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '0%': { opacity: '0', transform: 'translateY(14px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-12px)' },
+        'fade-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
         },
-        drift: {
-          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
-          '33%': { transform: 'translate(40px, -30px) scale(1.08)' },
-          '66%': { transform: 'translate(-30px, 25px) scale(0.94)' },
+        'palette-in': {
+          from: { opacity: '0', transform: 'translateY(-8px) scale(0.98)' },
+          to: { opacity: '1', transform: 'none' },
         },
         blink: {
           '0%, 50%': { opacity: '1' },
           '50.01%, 100%': { opacity: '0' },
         },
-        marquee: {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-50%)' },
-        },
-        'gradient-x': {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
+        'blink-eyes': {
+          '0%, 92%, 100%': { transform: 'scaleY(1)' },
+          '95%': { transform: 'scaleY(0.1)' },
         },
         dash: {
           to: { strokeDashoffset: '-16' },
         },
       },
       animation: {
-        'fade-up': 'fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both',
-        float: 'float 6s ease-in-out infinite',
-        'float-delayed': 'float 7s ease-in-out 2s infinite',
-        drift: 'drift 20s ease-in-out infinite',
-        'drift-slow': 'drift 28s ease-in-out infinite reverse',
+        'fade-up': 'fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both',
+        'fade-in': 'fade-in 0.2s ease-out both',
+        'palette-in': 'palette-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both',
         blink: 'blink 1s step-end infinite',
-        marquee: 'marquee 40s linear infinite',
-        'gradient-x': 'gradient-x 6s ease infinite',
-        dash: 'dash 0.8s linear infinite',
-        'ping-slow': 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite',
-        'spin-slow': 'spin 6s linear infinite',
-        'pulse-slow': 'pulse 6s ease-in-out infinite',
+        'blink-eyes': 'blink-eyes 5s ease-in-out infinite',
+        dash: 'dash 1s linear infinite',
       },
     },
   },
