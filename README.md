@@ -4,20 +4,29 @@ A single-page, responsive portfolio built with React, Vite, and Tailwind CSS.
 
 ## Sections
 
-- **Home** — intro and call-to-action buttons
-- **Projects** — live previews of deployed projects, with a "View All" toggle
-- **About** — bio and core agentic stack
+- **Home** — animated agent console that plays a scripted agent run (graph + trace), typed tagline
+- **Projects** — screenshot cards linking to live sites, with a "View All" toggle
+- **About** — bio and an animated `agent.config.js` profile card
+- **Workflow** — the understand → plan → act → reflect agent loop
 - **Skills** — LangChain, LangGraph, and OpenAI
-- **Contact** — resume download, email, LinkedIn, and GitHub
+- **Contact** — resume download, email (with copy), LinkedIn, and GitHub
+
+Animations are CSS-only (no animation library), pause when off screen, and respect the visitor's reduced-motion setting.
 
 ## Project Structure
 
 ```
 src/
-├── assets/          # Portrait, project screenshots, resume PDF
-├── App.jsx          # All page sections and project data
-├── index.css        # Global styles and Tailwind directives
-└── main.jsx         # Entry point
+├── assets/               # Project screenshots (WebP) and resume PDF
+├── components/           # One file per page section, plus shared pieces
+│   ├── AgentConsole.jsx  # Hero agent-run animation
+│   ├── Reveal.jsx        # Scroll-triggered entrance wrapper
+│   └── icons.jsx         # Inline SVG icons
+├── data.js               # All site content: projects, skills, workflow, agent run
+├── hooks.js              # useInView, reduced-motion check, card spotlight
+├── App.jsx               # Page layout
+├── index.css             # Global styles, reveal/spotlight effects
+└── main.jsx              # Entry point
 ```
 
 ## Getting Started
@@ -32,9 +41,9 @@ npm run lint     # Run ESLint
 
 ## Customization
 
-- **Projects** — edit the `allProjects` array in `src/App.jsx`. Each entry takes a `title`, `subtitle`, `features`, `accent` gradient, and `link`. Add an `image` to show a screenshot instead of a live iframe preview, or set `isComingSoon: true` for a placeholder card.
-- **Skills** — edit the `categories` array in the `Skills` component and the stack list in the `About` component.
-- **Resume** — replace the PDF in `src/assets/` and update its import at the top of `src/App.jsx`.
+- **Content** — everything lives in `src/data.js`: `projects`, `skills`, `stack`, `capabilities`, `workflowSteps`, `contact`, and the scripted hero `agentRun`.
+- **Projects** — each entry takes a `title`, `subtitle`, `features`, `accent` gradient, `link`, and an `image` (a 900×600 screenshot works best). Set `isComingSoon: true` for a placeholder card.
+- **Resume** — replace the PDF in `src/assets/` and update its import in `src/components/Contact.jsx`.
 - **Theme color** — change `primary` in `tailwind.config.js`.
 
 ## Tech Stack
