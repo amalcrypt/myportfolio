@@ -1,5 +1,4 @@
 import AgentConsole from './AgentConsole';
-import LocalTime from './LocalTime';
 import RevealHeading from './RevealHeading';
 import ScrambleText from './ScrambleText';
 import { ArrowDown, ArrowRight } from './icons';
@@ -47,15 +46,9 @@ export default function Hero() {
             </a>
           </div>
 
-          <p className="mt-12 flex animate-fade-up flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs text-muted [animation-delay:850ms]">
-            <span className="inline-flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              Open to roles &amp; projects
-            </span>
-            <span aria-hidden="true">·</span>
-            <span>
-              Local time <LocalTime />
-            </span>
+          <p className="mt-12 flex animate-fade-up items-center gap-2 font-mono text-xs text-muted [animation-delay:850ms]">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            Open to roles &amp; projects
           </p>
         </div>
 
