@@ -1,4 +1,4 @@
-import petrochatImage from './assets/petrochat.webp';
+import docchatImage from './assets/docchat.webp';
 import movieSentimentImage from './assets/moviesentiment.webp';
 import educhainImage from './assets/educhain.webp';
 
@@ -32,11 +32,11 @@ export const agentRun = {
 
 export const projects = [
   {
-    title: 'PetroChat',
-    subtitle: 'An AI-powered conversational assistant designed for the petroleum industry.',
-    features: ['AI Assistant', 'Domain Knowledge', 'Data Visualization'],
-    link: 'https://petrochat.streamlit.app/',
-    image: petrochatImage,
+    title: 'DocChat',
+    subtitle: 'A RAG assistant that answers questions only from the documents you upload, with sources for every answer.',
+    features: ['RAG', 'Document Q&A', 'Cited Sources'],
+    link: 'https://amalbinu-docchat.hf.space/',
+    image: docchatImage,
   },
   {
     title: 'Movie Sentiment Analysis',
