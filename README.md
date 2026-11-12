@@ -5,7 +5,7 @@ A single-page, responsive portfolio built with React, Vite, and Tailwind CSS.
 ## Sections
 
 - **Home** — headline, intro, and a terminal-style console that plays a scripted agent run (graph + trace)
-- **Work** — project screenshots linking to the live sites
+- **Work** — a featured case study (screenshot plus a short "how it works"), then project cards with live-site and code links
 - **Process** — the understand → plan → act → reflect agent loop
 - **About** — bio and a short facts list with the resume download
 - **Skills** — LangChain, LangGraph, and OpenAI
@@ -61,8 +61,13 @@ npm run lint     # Run ESLint
 ## Customization
 
 - **Content** — everything lives in `src/data.js`: `projects`, `processSteps`, `skills`, `facts`, `stack`, `contact`, and the scripted hero `agentRun`.
-- **Projects** — each entry takes a `title`, `subtitle`, `features`, `link`, and an `image` (a 900×600 screenshot works best).
-- **Resume** — replace the PDF in `src/assets/` and update its imports in `About.jsx` and `Contact.jsx`.
+- **Projects** — each entry takes a `title`, `subtitle`, `features`, `link`, an optional `code` link, and an `image` (a 900×600 screenshot works best). The first project becomes the featured case study when it has `howItWorks` (a list of `{ label, text }` steps); `note` adds a small footnote.
+- **Resume** — replace `src/assets/Amal_Binu_Resume.pdf` (it is imported in `About.jsx` and `Contact.jsx`).
+
+## Deployment extras
+
+- **Analytics** — `@vercel/analytics` is injected in `src/main.jsx`. It is cookie-less and only reports once Web Analytics is enabled for the project in the Vercel dashboard.
+- **SEO** — `public/robots.txt` and `public/sitemap.xml` (update `lastmod` after notable changes), plus Open Graph tags and Person structured data in `index.html`.
 
 ## Tech Stack
 

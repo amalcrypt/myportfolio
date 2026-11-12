@@ -3,7 +3,7 @@ import RevealHeading from './RevealHeading';
 import SectionHeader from './SectionHeader';
 import { ArrowDown } from './icons';
 import { facts } from '../data';
-import resumeFile from '../assets/Amal_Binu_FullStack_Developer_Resume.pdf';
+import resumeFile from '../assets/Amal_Binu_Resume.pdf';
 
 export default function About() {
   return (

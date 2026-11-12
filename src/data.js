@@ -30,19 +30,37 @@ export const agentRun = {
   ],
 };
 
+// The first project is shown as a featured case study; `howItWorks` and `note` are optional.
 export const projects = [
   {
     title: 'DocChat',
     subtitle: 'A RAG assistant that answers questions only from the documents you upload, with sources for every answer.',
-    features: ['RAG', 'Document Q&A', 'Cited Sources'],
+    features: ['FastAPI', 'Next.js', 'LangChain', 'ChromaDB', 'BM25', 'OpenAI'],
     link: 'https://amalbinu-docchat.hf.space/',
+    code: 'https://github.com/amalcrypt/Docchat',
     image: docchatImage,
+    howItWorks: [
+      {
+        label: 'Index',
+        text: 'Each file is split into ~1,000-character chunks and stored twice: in ChromaDB for meaning search (local bge-large embeddings) and in a BM25 index for exact words.',
+      },
+      {
+        label: 'Retrieve',
+        text: 'A question pulls the top 5 chunks from each index, merged without duplicates.',
+      },
+      {
+        label: 'Answer',
+        text: 'The chunks and recent chat history go to OpenAI with one rule: answer only from this context. The reply streams back with its sources.',
+      },
+    ],
+    note: 'Runs on a free Hugging Face Space, so the first load can take a moment to wake up.',
   },
   {
     title: 'Movie Sentiment Analysis',
     subtitle: 'An AI-powered tool to analyze movie reviews and sentiments.',
     features: ['NLP', 'Sentiment Analysis', 'Machine Learning'],
     link: 'https://moviesentimentanalaysis.vercel.app/',
+    code: 'https://github.com/amalcrypt/moviesentimentanalaysis',
     image: movieSentimentImage,
   },
   {
@@ -50,6 +68,7 @@ export const projects = [
     subtitle: 'A decentralized certificate validation system using blockchain.',
     features: ['Smart Contracts', 'Immutable Records', 'Instant Verification'],
     link: 'https://liveeduchain.vercel.app/',
+    code: 'https://github.com/amalcrypt/liveeduchain',
     image: educhainImage,
   },
 ];

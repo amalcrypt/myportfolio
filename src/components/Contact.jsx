@@ -4,7 +4,7 @@ import RevealHeading from './RevealHeading';
 import SectionHeader from './SectionHeader';
 import { ArrowDown, ArrowUpRight, Check, Copy } from './icons';
 import { contact } from '../data';
-import resumeFile from '../assets/Amal_Binu_FullStack_Developer_Resume.pdf';
+import resumeFile from '../assets/Amal_Binu_Resume.pdf';
 
 const linkClass =
   'group inline-flex h-11 items-center gap-2 rounded-full border border-line px-5 text-sm font-medium text-ink transition-[border-color,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-ink/40 active:translate-y-0 active:scale-[0.98]';
