@@ -25,7 +25,7 @@ export default function Hero() {
             parts={headline}
             delay={150}
             emClassName="font-serif text-[1.12em] font-normal italic tracking-[-0.01em]"
-            className="mt-6 text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:text-6xl lg:text-[4.25rem]"
+            className="mt-6 text-[2.5rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:text-6xl lg:text-[3.5rem] xl:text-[4.25rem]"
           />
 
           <p className="mt-7 max-w-lg animate-fade-up text-lg leading-relaxed text-muted [animation-delay:550ms]">
@@ -52,7 +52,7 @@ export default function Hero() {
           </p>
         </div>
 
-        <div className="animate-fade-up [animation-delay:400ms]">
+        <div className="max-w-xl animate-fade-up [animation-delay:400ms] lg:max-w-none">
           <AgentConsole />
         </div>
       </div>

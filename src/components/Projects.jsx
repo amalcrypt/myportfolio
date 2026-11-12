@@ -23,7 +23,7 @@ function ProjectImage({ project }) {
           height="600"
           loading="lazy"
           decoding="async"
-          className="aspect-[3/2] w-full object-cover object-top group-hover:scale-[1.04]"
+          className="aspect-[3/2] w-full object-cover object-top group-hover:scale-[1.04] dark:brightness-90"
         />
       </div>
     </a>

@@ -29,7 +29,7 @@ const StepText = ({ type, text }) => {
 
 function AgentGraph({ activeNode, visited, done }) {
   return (
-    <svg viewBox="0 0 340 96" className="w-full" aria-hidden="true">
+    <svg viewBox="0 0 340 96" className="mx-auto w-full max-w-[420px]" aria-hidden="true">
       {NODE_X.slice(0, -1).map((x, i) => (
         <line
           key={x}

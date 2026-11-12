@@ -40,6 +40,18 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   @apply font-semibold tracking-tight text-ink;
+  /* even line lengths, so a heading never strands one word on its last line */
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* One consistent keyboard-focus ring in both themes */
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 3px;
 }
 
 ::selection {
